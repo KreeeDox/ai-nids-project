@@ -5,7 +5,7 @@ import time
 
 # --- Configuration ---
 MODEL_FILE = 'nids_anomaly_detector_model.pkl'
-SIMULATED_TEST_DATA = 'combined_real_traffic_features.csv' 
+SIMULATED_TEST_DATA = 'simulated_traffic_data.csv' 
 FLOW_RATE = 0.005 # Delay in seconds between flows for fast simulation
 
 # --- 1. Load Model and Data ---
@@ -18,7 +18,7 @@ except FileNotFoundError:
 
 # --- 2. Prepare Data for Streaming Simulation ---
 # Prepare X (features) for streaming (dropping only the 'Binary_Label' used for testing)
-X_simulated = df_simulated.astype('float32')
+X_simulated = df_simulated.drop(columns=['Binary_Label']).astype('float32')
 print(f"Loaded {len(X_simulated)} flows for monitoring.")
 
 
