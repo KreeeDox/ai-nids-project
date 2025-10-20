@@ -17,6 +17,12 @@ except FileNotFoundError:
     exit()
 
 # --- 2. Prepare Data for Streaming Simulation ---
+import numpy as np # <-- YEH LINE ADD KAREIN
+
+# Cleaning data just in case
+df_simulated.fillna(0, inplace=True) # <-- YEH LINE ADD KAREIN
+df_simulated.replace([np.inf, -np.inf], 0, inplace=True) # <-- YEH LINE ADD KAREIN
+
 # Prepare X (features) for streaming (dropping only the 'Binary_Label' used for testing)
 X_simulated = df_simulated.astype('float32')
 print(f"Loaded {len(X_simulated)} flows for monitoring.")
